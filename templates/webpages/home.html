@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- SEARCH FILTER FIELD SECTION -->
+<section>
+    <div class="container">
+        <!-- JUMBOTRON -->
+        <div class="jumbotron mt-4 rounded p-4" style="background-color: #F9BB2B; border-radius: 1rem !important;">
+            <div class="row">
+                <div class="col-lg-6">
+                    <span class="badge rounded-pill bg-primary"
+                        style="background-color: #6633CC !important">Search</span>
+                    <h1>Search Wallpaperz</h1>
+                    <p class="lead">Search for wallpaperz by category or tags.</p>
+                    <form class="row g-3" method="GET" action="{% url 'search' %}">
+                        <div class="col-auto">
+                            <input name="keyword" type="text" class="form-control" id="inputPassword2"
+                                placeholder="Enter a Keyword">
+                        </div>
+                        <div class="col-auto">
+                            <select name="category" class="form-control" id="exampleFormControlSelect1">
+                                <option>--Category--</option>
+                                {% for cat in category_search %}
+                                <option>{{cat}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <select name="for_what" class="form-control" id="exampleFormControlSelect1">
+                                <option>--Device--</option>
+                                {% for fws in for_what_search %}
+                                <option>{{fws}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-dark mb-3"><i class="fas fa-search"></i> &nbsp; Search
+                                Walls</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-6 text-center">
+                    <img src="{% static './img/lcopro-graphics.svg' %}" class="img-fluid" alt="Responsive image"
+                        style="height: 200px;">
+                </div>
+            </div>
+        </div>
+</section>
+<!-- TRENDING WALLPAPERS SECTION -->
+<section id="walls">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 pt-4 pb-3">
+                <h2 style=" text-decoration: underline; text-decoration-color: #198754;">Trending Wallpapers</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            {% for wall in featured %}
+            <div class="col-lg-3 col-md-3 col-sm-6 pb-2">
+                <div class="bgimg text-center rounded">
+                    <img src="{{wall.image.url}}" class="img-fluid rounded myimg" alt="{{wall.title}}">
+                </div>
+                <p>{{wall.title}}</p>
+                <div class="d-grid gap-2">
+                    <a href="{{wall.image.url}}" class="btn btn-success btn-block"
+                        download="{{wall.title}} Prahlad Easy Wallz"> Download Now <i class="fas fa-download"></i></a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="py-4">
+                <img src="{% static './img/notfound.svg' %}" alt="Not Found" height="250">
+                <h2 class="text-center">Oops! No Trending Walls Found 😟</h2>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Mobile WALLPAPERS SECTION -->
+<section id="walls">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 pt-4 pb-3">
+                <h2 style=" text-decoration: underline; text-decoration-color: #198754;">Mobile Wallpapers</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            {% for mwallpaper in mwallpapers %}
+            <div class="col-lg-3 col-md-3 col-sm-6 pb-2">
+                <div class="bgimg text-center rounded">
+                    <img src="{{mwallpaper.image.url}}" class="img-fluid rounded myimg" alt="{{mwallpaper.title}}">
+                </div>
+
+                <p>{{mwallpaper.title}}</p>
+                <div class="d-grid gap-2">
+                    <a href="{{mwallpaper.image.url}}" class="btn btn-success btn-block"
+                        download="{{mwallpaper.title}} Prahlad"> Download Now <i class="fas fa-download"></i></a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="py-4">
+                <img src="{% static './img/notfound.svg' %}" alt="Not Found" height="250">
+                <h2 class="text-center">Oops! No Walls Found for your Mobile 😟 </h2>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- DESKTOP WALLPAPERS SECTION -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 pt-4 pb-3">
+                <h2 style=" text-decoration: underline; text-decoration-color: #198754;">Desktop Wallpapers</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for dwallpaper in dwallpapers %}
+            <div class="col-lg-3 col-md-3 col-sm-6 pb-2">
+                <div class="dbgimg text-center rounded">
+                    <img src="{{dwallpaper.image.url}}" class="img-fluid rounded myimgd" alt="{{dwallpaper.title}}">
+                </div>
+
+                <p>{{dwallpaper.title}}</p>
+                <div class="d-grid gap-2">
+                    <a href="{{dwallpaper.image.url}}" class="btn btn-success btn-block"
+                        download="{{dwallpaper.title}} Prahlad"> Download Now <i class="fas fa-download"></i></a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="py-4 text-center">
+                <img src="{% static './img/notfound.svg' %}" alt="Not Found" height="250">
+                <h2 class="text-center">Oops! No Walls Found for your Desktop 😟 </h2>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- TABLET WALLPAPERS SECTION -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 pt-4 pb-3">
+                <h2 style=" text-decoration: underline; text-decoration-color: #198754;">Tablet Wallpapers</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for twallpaper in twallpapers %}
+            <div class="col-lg-3 col-md-3 col-sm-6 pb-2">
+                <div class="dbgimg text-center rounded">
+                    <img src="{{twallpaper.image.url}}" class="img-fluid rounded myimgd" alt="{{twallpaper.title}}">
+                </div>
+
+                <p>{{twallpaper.title}}</p>
+                <div class="d-grid gap-2">
+                    <a href="{{twallpaper.image.url}}" class="btn btn-success btn-block"
+                        download="{{twallpaper.title}} Prahlad"> Download Now <i class="fas fa-download"></i></a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="py-4 text-center">
+                <img src="{% static './img/notfound.svg' %}" alt="Not Found" height="250">
+                <h2 class="text-center">Oops! No Walls Found for your TAB 😟 </h2>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- CONTACT FORM SECTION -->
+<section>
+    <div class="container">
+        <!-- JUMBOTRON -->
+        <div class="jumbotron mt-4 rounded p-4" style="background-color: #FFC670; border-radius: 1rem !important;">
+            <div class="row">
+                <div class="col-lg-6">
+                    <span class="badge rounded-pill bg-primary"
+                        style="background-color: #E85124 !important">contact</span>
+                    <h1>Contact us</h1>
+                    <p class="lead">Contact us for any issue or update</p>
+                    <form>
+                        <div class="form-group">
+                            <label for="inputName">Name</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group pt-2">
+                            <label for="inputEmail">Email</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group pt-2">
+                            <label for="inputMessage">Message</label>
+                            <textarea class="form-control" id="inputMessage" rows="3"
+                                placeholder="Enter your message"></textarea>
+                        </div>
+                        <div class="form-group pt-3">
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-dark mb-3">Send &nbsp; <i
+                                        class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="col-lg-6 text-center center">
+                    <img src="{% static './img/lcopro-graphics.svg' %}" class="img-fluid" alt="Responsive image"
+                        style="height: 300px;">
+                </div>
+            </div>
+        </div>
+</section>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- ALL WALLPAPERS SECTION -->
+<section id="walls">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 pt-4 pb-3">
+                <span style="font-size: 1.25rem;">Search Result for
+                    <span style="color: #198754; font-size: 1.5rem;">'{{keyword}}'</span>
+                    {% if category == '--Category--' %}
+                    <span></span>
+                    {% else %}
+                    in <span style="color: #198754; font-size: 1.5rem;">'{{category}}'</span> category</span>
+                {% endif %}
+                {% if for_what == '--Device--' %}
+                <span style="font-size: 1.25rem;">for <span style="color: #198754; font-size: 1.5rem;">All</span>
+                    devices</span>
+                {% else %}
+                <span style="font-size: 1.25rem;">for <span
+                        style="color: #198754; font-size: 1.5rem;">'{{for_what}}'</span> Device</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            {% for wallpaper in wallpapers %}
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="bgimg text-center rounded">
+                    <img src="{{wallpaper.image.url}}" class="img-fluid rounded myimg" alt="{{wall.title}}">
+                </div>
+                <p>{{wallpaper.title}}</p>
+                <div class="d-grid gap-2">
+                    <a href="{{wallpaper.image.url}}" class="btn btn-success btn-block"
+                        download="{{wallpaper.title}} Prahlad"> Download Now <i class="fas fa-download"></i></a>
+                </div>
+            </div>
+            {% empty %}
+            <img src="{% static './img/notfound.svg' %}" alt="Not Found" height="250">
+
+            <h2 class="text-center">Oops! No Result for '{{keyword}}'
+                {% if category == '--Category--' %}
+                <span></span>
+                {% else %}
+                in '{{category}}'
+                {% endif %}
+                {% if for_what == '--Device--' %}
+                <span>for All devices</span>
+                {% else %}
+                <span>for '{{for_what}}' Device</span>
+                {% endif %}
+            </h2>
+            </h2>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

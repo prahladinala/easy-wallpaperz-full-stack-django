@@ -1,0 +1,49 @@
+/* VERTICAL CENTER SECTION */
+.center {
+  padding: 90px 0;
+}
+/* .myimg {
+  height: 190px;
+} */
+
+/* IMAGE HEIGHT SECTION */
+@media only screen and (max-width: 576px) {
+  .myimg {
+    height: 300px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .myimg {
+    width: 100%;
+    height: 300px;
+  }
+}
+.myimg {
+  height: 300px;
+}
+/* .myimg:hover {
+  transform: scale(1.05) !important;
+} */
+
+/* IMAGE HOVER ANIMATION */
+.bgimg {
+  transition: transform 0.2s;
+  /* background-color: #0e1924; */
+  background-color: #fff;
+}
+.bgimg:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.myimgd {
+  width: 100%;
+  max-height: 150px !important;
+}
+.dbgimg {
+  transition: transform 0.2s;
+  background-color: #fff;
+}
+.dbgimg:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
